@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FastAPI: Run & Debug",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--host", "0.0.0.0",
+                "--port", "8000"
+                // IMPORTANTE: Para depurar de forma efectiva, es mejor QUITAR --reload
+                // cuando estás activamente usando breakpoints.
+                // Si lo dejas, uvicorn reiniciará el proceso hijo en cada cambio,
+                // lo que puede hacer que pierdas el estado de depuración.
+                // Si necesitas el hot-reloading mientras depuras, es más complejo y a veces inestable.
+                // "--reload" 
+            ],
+            "cwd": "${workspaceFolder}", // Asegura que el directorio de trabajo es la raíz del proyecto
+            "envFile": "${workspaceFolder}/.env", // Carga variables de entorno desde .env
+            "justMyCode": true, // Evita depurar el código de librerías de terceros
+            "console": "integratedTerminal" // Muestra la salida en el terminal integrado de VS Code
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

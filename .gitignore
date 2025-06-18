@@ -1,0 +1,29 @@
+# Environment and credentials
+.env
+credentials.json
+
+# Neo4j data
+data/neo4j_data/
+data/neo4j_data/**/*
+
+# Chroma DB
+data/chroma_db/
+data/chroma_db/**/*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# VS Code
+.vscode/
+
+# Azure
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+__blobstorage__/

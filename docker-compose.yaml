@@ -1,0 +1,13 @@
+services:
+  neo4j:
+    image: neo4j:5.19.0-community # Puedes ajustar la versión si lo deseas
+    hostname: neo4j
+    ports:
+      - "7474:7474" # Neo4j Browser
+      - "7687:7687" # Bolt port (para conexiones de cliente)
+    volumes:
+      - ./data/neo4j_data:/data 
+      - ./data/neo4j_imports:/var/lib/neo4j/import # Para importar CSV
+    environment:
+      - NEO4J_AUTH=neo4j/gorlami_13
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
