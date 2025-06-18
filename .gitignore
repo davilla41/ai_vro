@@ -1,6 +1,7 @@
 # Environment and credentials
 .env
 credentials.json
+credentials_oauth.json
 
 # Neo4j data
 data/neo4j_data/

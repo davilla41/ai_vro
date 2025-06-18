@@ -8,7 +8,7 @@
             "module": "uvicorn",
             "args": [
                 "app.main:app",
-                "--host", "0.0.0.0",
+                "--host", "127.0.0.1",
                 "--port", "8000"
                 // IMPORTANTE: Para depurar de forma efectiva, es mejor QUITAR --reload
                 // cuando estás activamente usando breakpoints.

@@ -18,7 +18,7 @@ class LLMService:
         # Para ChatGoogleGenerativeAI, la autenticación se maneja automáticamente
         # si GOOGLE_APPLICATION_CREDENTIALS está configurado.
         # No necesitas pasar google_api_key directamente aquí si estás usando la cuenta de servicio.
-        self.llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.5)
+        self.llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.5)
 
     def generate_answers_from_context(self, question: str, graph_context: str = "", vector_context: str = "") -> list[str]:
         """
@@ -57,12 +57,15 @@ class LLMService:
         )
 
         chain = LLMChain(llm=self.llm, prompt=prompt_template)
-        response = chain.run(question=question, graph_context=graph_context, vector_context=vector_context)
+        
+        response = chain.invoke({"question": question, "graph_context": graph_context, "vector_context": vector_context})
+ 
 
         # El resultado de .invoke() en LLMChain es un diccionario, la salida está en 'text' por defecto.
         generated_text = response['text'] 
 
         # Parsear las opciones del texto plano generado por el LLM
+        generated_text = response['text']
         possible_answers_raw = generated_text.strip().split("\n")
         parsed_answers = []
         for ans in possible_answers_raw:
@@ -89,4 +92,5 @@ class LLMService:
         classification = chain.invoke({"query": query}) # Usando .invoke()
         
         # El resultado de .invoke() en LLMChain es un diccionario, la salida está en 'text' por defecto.
+        
         return classification['text'].strip().lower()
